@@ -1,0 +1,91 @@
+{
+    "version": 2,
+    "name": "XTLW 6",
+    "inherits": "XTLW3Dprinter",
+    "metadata": {
+        "visible": true,
+        "author": "XTLW 3D",
+        "manufacturer": "XTLW 3D",
+        "category": "Other",
+        "file_formats": "text/x-gcode",
+        "platform": "xtlw6_platform.stl",
+        "hsa_material": true,
+        "has_machine_quality": true,
+        "quality_definition": "XTLW3Dprinter",
+        "has_variants": false,
+        "weight": -3,
+        "machine_extruder_trains":
+        {
+            "0": "xtlw3D_6_dual_extruder_0",
+            "1": "xtlw3D_6_dual_extruder_1"
+        }
+    },
+
+    "overrides": {
+        "machine_name": { "default_value": "XTLW 6" },
+        "machine_width": { "default_value": 317 },
+        "machine_height": { "default_value": 290 },
+        "machine_depth": { "default_value": 310 },
+        "machine_heated_bed": { "default_value": true },
+
+
+        
+        "line_width": { "value": "machine_nozzle_size" },
+        "wall_thickness": { "value": "line_width * 3" },
+
+        "retraction_amount": { "default_value": 6.5 },
+        "retraction_speed": { "default_value": 40 },
+        "material_standby_temperature": { "value": "155" },
+        "switch_extruder_retraction_amount": { "default_value": 16 },
+        "switch_extruder_retraction_speeds": { "default_value": 50 },
+
+        "retraction_combing": { "value": "'noskin'" },
+        
+        "speed_travel": { "value": "120" },
+        "speed_print": { "value": "50" },
+        "speed_layer_0": { "value": "20" },
+        "speed_prime_tower": { "value": "speed_topbottom" },
+        "speed_support": { "value": "speed_wall_0" },
+        "speed_support_interface": { "value": "speed_topbottom" },
+        "speed_topbottom": { "value": "math.ceil(speed_print * 30 / 50)" },
+        "speed_wall": { "value": "math.ceil(speed_print * 25 / 40)" },
+        "speed_wall_0": { "value": "math.ceil(speed_wall * 20 / 35)" },
+        "speed_wall_x": { "value": "speed_wall" },
+        
+        "acceleration_enabled": { "default_value": true },
+		"acceleration_print": { "value": "1000" },
+		"acceleration_travel": { "value": "2000" },
+        "acceleration_layer_0": { "value": "acceleration_topbottom" },
+        "acceleration_prime_tower": { "value": "math.ceil(acceleration_print * 2000 / 4000)" },
+        "acceleration_support": { "value": "math.ceil(acceleration_print * 2000 / 4000)" },
+        "acceleration_support_interface": { "value": "acceleration_topbottom" },
+        "acceleration_topbottom": { "value": "math.ceil(acceleration_print * 800 / 4000)" },
+        "acceleration_wall": { "value": "math.ceil(acceleration_print * 1600 / 4000)" },
+        "acceleration_wall_0": { "value": "math.ceil(acceleration_wall * 500 / 1000)" },
+		
+        "jerk_enabled": { "default_value": true },
+		"jerk_print": { "value": "10" },
+		"jerk_travel": { "value": "15" },
+        "jerk_layer_0": { "value": "jerk_topbottom" },
+        "jerk_prime_tower": { "value": "math.ceil(jerk_print * 15 / 25)" },
+        "jerk_support": { "value": "math.ceil(jerk_print * 15 / 25)" },
+        "jerk_support_interface": { "value": "jerk_topbottom" },
+        "jerk_topbottom": { "value": "math.ceil(jerk_print * 10 / 25)" },
+        "jerk_wall": { "value": "math.ceil(jerk_print * 15 / 25)" },
+        "jerk_wall_0": { "value": "math.ceil(jerk_wall * 6 / 10)" },
+		"jerk_travel_layer_0": { "value": "math.ceil(jerk_layer_0 * jerk_travel / jerk_print)" },
+
+        "prime_tower_position_x": { "value": "265" },
+        "prime_tower_min_volume": { "value": "6" },
+        
+        "machine_start_gcode": {
+            "default_value": "M605 S0\nG21\nG90\nM82\nM107\nT1\nG28\nG1 Z0.3 F150\nT1\nG92 E0\nG1 E45 F210\nG92 E0\nT0\nG92 E0\nG1 E45 F210\nG92 E0\n"
+        },
+        "machine_end_gcode": {
+            "default_value": "G91\nG1 Z+0.5 E-16 Y+10 F9000\nG90\nM107\nM104 S0 T1\nM104 S0 T0\nM140 S0\nG28 X0 Y0\nT0\nM84"
+        },
+        "machine_extruder_count": {
+          "default_value": 2
+        }
+    }
+}

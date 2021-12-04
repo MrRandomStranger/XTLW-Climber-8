@@ -1,0 +1,64 @@
+{
+    "version": 2,
+    "name": "XTLW3Dprinter",
+    "inherits": "fdmprinter",
+    "metadata": {
+        "visible": false,
+        "author": "XTLW 3D",
+        "manufacturer": "XTLW 3D",
+        "file_formats": "text/x-gcode",
+        "has_machine_quality": true,
+        "hsa_material": true
+    },
+
+    "overrides": {
+        "machine_center_is_zero": { "default_value": false },
+        "machine_nozzle_size": { "default_value": 0.4 },
+        "material_diameter": { "default_value": 1.75 },
+        "machine_gcode_flavor": { "default_value": "RepRap (Marlin/Sprinter)" },
+        
+        "optimize_wall_printing_order": { "value": "True" },
+
+        "top_bottom_pattern":{ "value": "'zigzag'" },
+
+        "infill_wipe_dist": { "value": "0" },
+        "infill_pattern": { "value": "'lines' if infill_sparse_density > 50 else 'cubic'" },
+        "zig_zaggify_infill": { "value": "gradual_infill_steps == 0" },
+        
+        "speed_z_hop": { "value": 5 },
+        
+        "travel_avoid_other_parts": { "value": true },
+        "travel_avoid_supports": { "value": true },
+        "travel_avoid_distance": { "value": "3 if extruders_enabled_count > 1 else machine_nozzle_tip_outer_diameter / 2 * 1.5" },
+        "retraction_hop_enabled": { "value": "extruders_enabled_count > 1" },
+        "retraction_hop_only_when_collides": { "value": "True" },
+        "retraction_hop": { "value": "2 if extruders_enabled_count > 1 else layer_height" },
+        "retraction_hop_height_after_extruder_switch": { "value": 2 },
+        "retraction_combing": { "value": "'off' if retraction_hop_enabled else 'noskin'" },
+        
+        "cool_fan_full_at_height": { "value": "0 if resolveOrValue('adhesion_type') == 'raft' else resolveOrValue('layer_height_0')" },
+        "cool_min_layer_time": { "value": 10 },
+
+        "support_angle": { "value": "60" },
+        "support_pattern": { "value": "'zigzag'" },
+        "support_infill_rate": { "value": "0 if support_tree_enable else 20" },
+        "support_use_towers": { "value": false },
+        "support_xy_distance": { "value": "wall_line_width_0 * 2" },
+        "support_xy_distance_overhang": { "value": "wall_line_width_0" },
+        "support_z_distance": { "value": "layer_height if layer_height >= 0.15 else layer_height*2" },
+        "support_xy_overrides_z": { "value": "'xy_overrides_z'" },
+        "support_wall_count": { "value": 1 },
+        "support_brim_enable": { "value": true },
+        "support_brim_width": { "value": 4 },
+        "support_interface_enable": { "value": true },
+        "support_interface_height": { "value": "layer_height * 5" },
+        "support_interface_density": { "value": 33.333 },
+        "support_interface_pattern": { "value": "'grid'" },
+        "support_interface_skip_height": { "value": 0.2 },
+        "minimum_support_area": { "value": 5 },
+        "minimum_interface_area": { "value": 10 },
+        
+        "adhesion_type": { "value": "'skirt'" },
+        "brim_replaces_support": { "value": true }
+    }
+}
